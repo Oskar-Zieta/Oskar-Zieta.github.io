@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oskar Zięta — CV</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --accent: #2563eb;
+        --border: #dbe3ef;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .page {
+        max-width: 900px;
+        margin: 2.5rem auto;
+        padding: 0 1rem;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.05);
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.25;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+        color: var(--accent);
+      }
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .headline {
+        color: var(--muted);
+        margin: 0.5rem 0 1rem;
+      }
+
+      .contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .contact a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .section {
+        margin-top: 1.75rem;
+      }
+
+      .section:first-of-type {
+        margin-top: 1.5rem;
+      }
+
+      .entry {
+        margin-top: 1rem;
+      }
+
+      .entry:first-of-type {
+        margin-top: 0;
+      }
+
+      .meta {
+        margin: 0.1rem 0 0.4rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      ul {
+        margin: 0.5rem 0 0;
+        padding-left: 1.2rem;
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          margin: 1rem auto;
+        }
+
+        .card {
+          padding: 1.25rem;
+        }
+
+        h1 {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <article class="card" aria-label="Curriculum Vitae">
+        <header>
+          <h1>Oskar Zięta</h1>
+          <p class="headline">Web Developer</p>
+          <ul class="contact">
+            <li><a href="mailto:you@example.com">you@example.com</a></li>
+            <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/Oskar-Zieta" target="_blank" rel="noreferrer">GitHub</a></li>
+            <li>Poland</li>
+          </ul>
+        </header>
+
+        <section class="section" aria-labelledby="summary-title">
+          <h2 id="summary-title">Profile</h2>
+          <p>
+            Motivated developer focused on building clean, accessible, and maintainable web applications.
+            Strong collaboration skills and practical experience with modern frontend technologies.
+          </p>
+        </section>
+
+        <section class="section" aria-labelledby="experience-title">
+          <h2 id="experience-title">Experience</h2>
+          <div class="entry">
+            <h3>Frontend Developer — Company Name</h3>
+            <p class="meta">2023 – Present · City, Country</p>
+            <ul>
+              <li>Developed responsive interfaces for production projects using HTML, CSS, and JavaScript.</li>
+              <li>Collaborated with design and backend teams to improve usability and delivery speed.</li>
+              <li>Maintained component quality with regular testing and code reviews.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="education-title">
+          <h2 id="education-title">Education</h2>
+          <div class="entry">
+            <h3>BSc in Computer Science — University Name</h3>
+            <p class="meta">2019 – 2023 · City, Country</p>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="skills-title">
+          <h2 id="skills-title">Skills</h2>
+          <p>HTML5, CSS3, JavaScript, React, Git, REST APIs, Responsive Web Design</p>
+        </section>
+
+        <section class="section" aria-labelledby="languages-title">
+          <h2 id="languages-title">Languages</h2>
+          <p>Polish (native), English (professional)</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
