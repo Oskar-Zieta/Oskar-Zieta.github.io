@@ -41,7 +41,14 @@
             z-index: 1;
         }
 
-        h1 { color: #f7f7f7; border-bottom: 2px solid #4d4f56; padding-bottom: 10px; }
+        h1 {
+            color: #f7f7f7;
+            border-bottom: 2px solid rgba(255,255,255,0.12);
+            padding-bottom: 10px;
+            font-size: 2.2rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 16px;
+        }
         h2 { color: #dfe3ea; margin-top: 30px; }
         ul { margin-bottom: 20px; padding-left: 20px; }
         li { margin-bottom: 8px; }
@@ -52,6 +59,7 @@
             margin-top: 40px;
             border: 1px solid rgba(255,255,255,0.12);
             box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            backdrop-filter: blur(10px);
         }
         .contact-header {
             display: flex;
@@ -88,6 +96,7 @@
             margin-top: 40px;
             border: 1px solid rgba(255,255,255,0.12);
             box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            backdrop-filter: blur(10px);
         }
         .contact-form h2 { margin-top: 0; }
         .contact-form label { display: block; margin-bottom: 6px; font-weight: 600; color: #e8ecf2; }
@@ -112,8 +121,23 @@
             color: #fff;
             font-weight: 600;
             cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .tech-stack span { display: inline-block; background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 15px; font-size: 0.9em; margin: 0 5px 5px 0; color: #e8ecf2; font-weight: 500; }
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+        }
+        .tech-stack span {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.9em;
+            margin: 0 6px 8px 0;
+            color: #e8ecf2;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
         .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 32px; }
         .social-links a {
             display: inline-flex;
@@ -128,7 +152,10 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
-        .social-links a:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+        .social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+        }
 
         @media (max-width: 600px) {
             body { padding: 24px 16px 40px; }
