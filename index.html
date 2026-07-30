@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oskar Zięta | zieta.dev</title>
+
+    <!-- Ikonka w zakładce przeglądarki (Favicon) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟢</text></svg>">
+
     <style>
         * { box-sizing: border-box; }
 
@@ -41,7 +45,7 @@
             z-index: 1;
         }
 
-        /* Hero Section (Układ 2-kolumnowy) */
+        /* Hero Section */
         .hero {
             display: flex;
             align-items: center;
@@ -51,9 +55,7 @@
             border-bottom: 2px solid rgba(255,255,255,0.12);
             padding-bottom: 24px;
         }
-        .hero-text {
-            flex: 1;
-        }
+        .hero-text { flex: 1; }
 
         /* Status Badge */
         .status-badge {
@@ -126,7 +128,37 @@
             align-items: center;
             gap: 8px;
         }
+
+        /* Kafelki Bento (Zainteresowania) */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .bento-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.12);
+        }
+        .bento-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         
+        /* Doświadczenie i projekty */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -142,9 +174,9 @@
             transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .project-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.12);
         }
         .project-card strong {
             display: block;
@@ -153,6 +185,50 @@
             margin-bottom: 6px;
         }
 
+        /* Pigułki Narzędzi z Ikonami */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            color: #e8ecf2;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+        .tech-pill:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.13);
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+        .tech-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* SVG Ikony technologii */
+        .icon-sql { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234169E1'%3E%3Cpath d='M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.3 6 2s-2.13 2-6 2-6-1.3-6-2 2.13-2 6-2zm0 14c-3.87 0-6-1.3-6-2v-2.16c1.37.73 3.54 1.16 6 1.16s4.63-.43 6-1.16V17c0 .7-2.13 2-6 2z'/%3E%3C/svg%3E"); }
+        .icon-r { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23276DC3'%3E%3Cpath d='M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm3.2 14.8l-2.4-3.6h-1.6v3.6H9V8.4h4.8c2.2 0 3.6 1.1 3.6 2.8 0 1.4-.9 2.3-2.1 2.6l2.7 4zm-4-5.2h1.6c.9 0 1.5-.4 1.5-1.1 0-.7-.6-1.1-1.5-1.1h-1.6v2.2z'/%3E%3C/svg%3E"); }
+        .icon-powerbi { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F2C811'%3E%3Cpath d='M19 19H15V5H19V19ZM13 19H9V9H13V19ZM7 19H3V13H7V19Z'/%3E%3C/svg%3E"); }
+        .icon-excel { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23107C41'%3E%3Cpath d='M21.17 3H7.83A1.83 1.83 0 0 0 6 4.83v14.34A1.83 1.83 0 0 0 7.83 21h13.34A1.83 1.83 0 0 0 23 19.17V4.83A1.83 1.83 0 0 0 21.17 3zM12.5 16.5l-2-3.25-2 3.25H6.8l3.2-4.8L7 7h1.7l1.8 3.1L12.2 7h1.7l-3.1 4.7 3.2 4.8h-1.5z'/%3E%3C/svg%3E"); }
+        .icon-jira { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230052CC'%3E%3Cpath d='M11.53 2c0 2.4 1.97 4.35 4.35 4.35h1.78v1.78c0 2.4 1.95 4.35 4.35 4.35V2h-10.48zm-4.36 4.35c0 2.4 1.96 4.35 4.35 4.35h1.78v1.78c0 2.39 1.95 4.35 4.35 4.35V6.35H7.17zM2.8 10.7c0 2.4 1.96 4.35 4.35 4.35h1.78v1.78c0 2.4 1.95 4.35 4.35 4.35V10.7H2.8z'/%3E%3C/svg%3E"); }
+        .icon-grafana { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F46800'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E"); }
+        .icon-zabbix { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D40000'%3E%3Cpath d='M4 4h16v3L9 17h11v3H4v-3l11-10H4V4z'/%3E%3C/svg%3E"); }
+
+        /* Formularz kontaktowy */
         .contact-form {
             background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
             padding: 24px;
@@ -163,9 +239,7 @@
             backdrop-filter: blur(10px);
             transition: border-color 0.3s ease;
         }
-        .contact-form:focus-within {
-            border-color: rgba(255, 255, 255, 0.25);
-        }
+        .contact-form:focus-within { border-color: rgba(255, 255, 255, 0.25); }
         .contact-form h2 { margin-top: 0; }
         .contact-form label { display: block; margin-bottom: 6px; font-weight: 600; color: #e8ecf2; }
         .contact-form input,
@@ -204,24 +278,7 @@
             background: linear-gradient(135deg, #4a4e58 0%, #2a2f37 100%);
         }
 
-        .tech-stack span {
-            display: inline-block;
-            background: rgba(255,255,255,0.08);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 0.9em;
-            margin: 0 6px 8px 0;
-            color: #e8ecf2;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-        }
-        .tech-stack span:hover {
-            transform: translateY(-2px);
-            background: rgba(255,255,255,0.14);
-            border-color: rgba(255,255,255,0.25);
-        }
-
+        /* Linki społecznościowe */
         .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0 0; }
         .social-links a {
             display: inline-flex;
@@ -265,13 +322,13 @@
             .hero { flex-direction: column-reverse; text-align: center; gap: 20px; }
             .status-badge { margin: 0 auto 12px; }
             .social-links { justify-content: center; }
-            .projects-grid { grid-template-columns: 1fr; }
+            .projects-grid, .bento-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sekcja Główna z Pigułką i Zdjęciem -->
+    <!-- Sekcja Główna (Hero) -->
     <div class="hero">
         <div class="hero-text">
             <div class="status-badge">
@@ -279,53 +336,51 @@
                 Dostępny do rekrutacji / projektów
             </div>
             <h1>Oskar Zięta</h1>
-            <p>Mam 22 lata, jestem studentem Informatyki i Ekonometrii oraz pracuję w SGB Banku w dziale IT na stanowisku Specjalisty ds. Monitoringu Systemów IT. Na co dzień dbam o utrzymanie ciągłości działania systemów informatycznych i aktywnie rozwijam narzędzia monitorujące.</p>
+            <p>Mam 22 lata, jestem studentem Informatyki i Ekonometrii oraz pracuję w SGB Banku w dziale IT na stanowisku Specjalisty ds. Monitoringu. Na co dzień dbam o utrzymanie ciągłości działania systemów informatycznych i aktywnie rozwijam narzędzia monitorujące.</p>
             
             <div class="social-links">
-                <!-- Przycisk do pobrania CV -->
-                <a href="oskarzieta_cv.pdf" download class="cv-button">📄 Pobierz CV</a>
+                <a href="CV_Oskar_Zieta.pdf" download class="cv-button">📄 Pobierz CV</a>
                 <a href="https://www.linkedin.com/in/oskar-zięta/" target="_blank" rel="noopener noreferrer"><span class="social-icon icon-linkedin"></span>LinkedIn</a>
                 <a href="https://github.com/Oskar-Zieta" target="_blank" rel="noopener noreferrer"><span class="social-icon icon-github"></span>GitHub</a>
                 <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><span class="social-icon icon-instagram"></span>Instagram</a>
             </div>
         </div>
 
-        <!-- Kwadrat na zdjęcie profilowe z podświetleniem -->
         <div class="profile-avatar">
-            <!-- Wstaw swój plik ze zdjęciem (np. avatar.jpg lub profile.jpg) w miejsce src -->
             <img src="zdjecie_1.jpg" alt="Oskar Zięta">
         </div>
     </div>
 
-    <!-- Sekcja Zainteresowania w formie kafelków (Bento Grid) -->
-<h2>Zainteresowania i rozwój</h2>
-<div class="bento-grid">
-    <div class="bento-card">
-        <h3>💻 IT & Analiza Danych</h3>
-        <p>Praca z danymi, automatyzacja i poznawanie nowych narzędzi. Interesują mnie systemy bazodanowe oraz analiza procesów.</p>
+    <!-- Sekcja Zainteresowania w formie kafelków Bento Grid -->
+    <h2>Zainteresowania i rozwój</h2>
+    <div class="bento-grid">
+        <div class="bento-card">
+            <h3>💻 IT & Analiza Danych</h3>
+            <p>Praca z danymi, automatyzacja i poznawanie nowych narzędzi. Interesują mnie systemy bazodanowe oraz analiza procesów.</p>
+        </div>
+        <div class="bento-card">
+            <h3>🖥️ Serwery & Monitoring</h3>
+            <p>Rozwój w obszarze architektury sieciowej, utrzymania ciągłości działania systemów oraz narzędzi monitorujących IT.</p>
+        </div>
+        <div class="bento-card">
+            <h3>⚽ Sport & Rozwój</h3>
+            <p>Pasjonat piłki nożnej i sportów zespołowych. Stawiam na ciągły rozwój osobisty i pracę w dynamicznym środowisku.</p>
+        </div>
     </div>
-    <div class="bento-card">
-        <h3>🖥️ Serwery & Monitoring</h3>
-        <p>Rozwój w obszarze architektury sieciowej, utrzymania ciągłości działania systemów oraz narzędzi monitorujących IT.</p>
-    </div>
-    <div class="bento-card">
-        <h3>⚽ Sport & Rozwój</h3>
-        <p>Pasjonat piłki nożnej i sportów zespołowych. Stawiam na ciągły rozwój osobisty i pracę w dynamicznym środowisku.</p>
-    </div>
-</div>
 
-<!-- Sekcja Narzędzia z kolorowymi ikonami -->
-<h2>Narzędzia i technologie</h2>
-<div class="tech-stack">
-    <span class="tech-pill"><span class="tech-icon icon-sql"></span>SQL</span>
-    <span class="tech-pill"><span class="tech-icon icon-r"></span>R / Quarto</span>
-    <span class="tech-pill"><span class="tech-icon icon-powerbi"></span>Power BI</span>
-    <span class="tech-pill"><span class="tech-icon icon-excel"></span>Excel</span>
-    <span class="tech-pill"><span class="tech-icon icon-jira"></span>Jira / Confluence</span>
-    <span class="tech-pill"><span class="tech-icon icon-zabbix"></span>Zabbix</span>
-    <span class="tech-pill"><span class="tech-icon icon-grafana"></span>Grafana</span>
-</div>
+    <!-- Sekcja Narzędzia z Kolorowymi Ikonami -->
+    <h2>Narzędzia i technologie</h2>
+    <div class="tech-stack">
+        <span class="tech-pill"><span class="tech-icon icon-sql"></span>SQL</span>
+        <span class="tech-pill"><span class="tech-icon icon-r"></span>R / Quarto</span>
+        <span class="tech-pill"><span class="tech-icon icon-powerbi"></span>Power BI</span>
+        <span class="tech-pill"><span class="tech-icon icon-excel"></span>Excel</span>
+        <span class="tech-pill"><span class="tech-icon icon-jira"></span>Jira / Confluence</span>
+        <span class="tech-pill"><span class="tech-icon icon-zabbix"></span>Zabbix</span>
+        <span class="tech-pill"><span class="tech-icon icon-grafana"></span>Grafana</span>
+    </div>
 
+    <!-- Doświadczenie i projekty -->
     <h2>Doświadczenie i wybrane projekty</h2>
     <div class="projects-grid">
         <div class="project-card">
@@ -342,6 +397,7 @@
         </div>
     </div>
 
+    <!-- Formularz Kontaktowy -->
     <div class="contact-form">
         <h2>Kontakt</h2>
         <form action="https://formspree.io/f/xykrayyq" method="POST">
