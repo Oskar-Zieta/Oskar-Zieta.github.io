@@ -236,24 +236,20 @@
     </div>
 
     <div class="contact-form">
-        <h2>Kontakt</h2>
-        <!-- Formularz wysyłany bezpośrednio na oskar@zieta.dev via Formspree -->
-        <form action="https://formspree.io/f/xykrayyq" method="POST">
-            <label for="name">Imię</label>
-            <input type="text" id="name" name="name" placeholder="Twoje imię" required>
+    <h2>Kontakt</h2>
+    <form action="https://formspree.io/f/xykrayyq" method="POST">
+        <label for="email">Twój Email</label>
+        <input type="email" id="email" name="email" placeholder="twoj@email.com" required>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="twoj@email.com" required>
+        <label for="subject">Temat</label>
+        <input type="text" id="subject" name="_subject" placeholder="W czym mogę pomóc?" required>
 
-            <label for="subject">Temat</label>
-            <input type="text" id="subject" name="_subject" placeholder="Temat wiadomości" required>
+        <label for="message">Wiadomość</label>
+        <textarea id="message" name="message" rows="5" placeholder="Napisz wiadomość..." required></textarea>
 
-            <label for="message">Wiadomość</label>
-            <textarea id="message" name="message" rows="5" placeholder="Napisz wiadomość..." required></textarea>
-
-            <button type="submit">Wyślij</button>
-        </form>
-    </div>
+        <button type="submit">Wyślij wiadomość</button>
+    </form>
+</div>
 
 </body>
 </html>
