@@ -276,6 +276,68 @@
     transform: translateY(-3px);
     border-color: var(--accent-green-alpha);
 }
+
+
+
+/* ============================================================
+   KOMPAKTOWE FLIP CARDS Z ZIELONĄ POŚWIATĄ (GLOW)
+   ============================================================ */
+
+/* Wysokość grubego, ale zgrabnego kafelka */
+.flip-card {
+  background-color: transparent;
+  height: 140px; /* Zmniejszona wysokość z przodu */
+  perspective: 1000px;
+}
+
+/* Przód karty: tylko ikona + tytuł */
+.flip-card-front {
+  background: #18191c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Poświata na froncie przy najechaniu (zanim się obróci) */
+.flip-card:hover .flip-card-front {
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+}
+
+.flip-card-front .hobby-emoji {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Lekkie powiększenie ikony przy hoverze */
+.flip-card:hover .hobby-emoji {
+  transform: scale(1.15);
+}
+
+.flip-card-front h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Tył karty: opis z pełnym podświetleniem */
+.flip-card-back {
+  background: #1e2024;
+  border: 1px solid #10b981;
+  border-radius: 14px;
+  color: #e5e7eb;
+  transform: rotateY(180deg);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.3); /* Szmaragdowy glow z tyłu */
+  padding: 16px;
+}
+
+.flip-card-back p {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
+}
 .cert-header {
     display: flex;
     align-items: flex-start;
@@ -933,7 +995,8 @@ HTML
     </div>
 
     <div class="hobby-card">
-      <h3>Piłkanożna ⚽</h3>
+    <div class="hobby-icon">⚽</div>
+      <h3>Piłkanożna </h3>
       <p>Aktywnie oglądam i śledzę mecze piłkarskie przede wszystkim premier league oraz laliga. Kibicuje drużynie Tottenham Hotspur.</p>
     </div>
     <div class="hobby-card">
