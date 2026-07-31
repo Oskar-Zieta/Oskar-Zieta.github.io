@@ -2,16 +2,18 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-        <link rel="stylesheet" href="assets/styles.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-theme')}catch(e){}</script>
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+      <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
     <!-- Nawigacja Górna -->
     <nav class="navbar">
         <div class="nav-container">
-            <a class="nav-logo" href="index.html">Oskar Zięta</a>
+            <a class="nav-logo" href="index.html">Oskar Zięta / zieta.dev</a>
             <div class="nav-menu">
                 <a class="nav-btn active" href="index.html">Główna</a>
                 <a class="nav-btn" href="about.html">O mnie</a>
@@ -26,9 +28,12 @@
     <div id="home" class="tab-content active">
         <div class="hero">
             <div class="hero-text">
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    Dostępny do rekrutacji / projektów
+                <div class="status-row">
+                  <div class="status-badge">
+                      <span class="status-dot"></span>
+                      Dostępny do rekrutacji / projektów
+                  </div>
+                  <div id="poznanClock" class="time-badge" aria-live="polite">Poznań: --:--</div>
                 </div>
                 <h1>
                     Oskar Zięta
@@ -123,6 +128,40 @@
 </section>
 
         <!-- Narzędzia z Wbudowanymi Wektorami SVG -->
+
+        <!-- Kompaktowy pasek informacji -->
+        <section class="info-bar" style="margin-top: 18px;">
+          <div class="info-items" role="list">
+            <a class="info-pill" role="listitem" href="projects.html">
+              <span class="icon">💼</span>
+              <div>
+                <div class="value">4</div>
+                <div class="label">Projekty</div>
+              </div>
+            </a>
+            <a class="info-pill" role="listitem" href="about.html#certyfikaty">
+              <span class="icon">📜</span>
+              <div>
+                <div class="value">4</div>
+                <div class="label">Certyfikaty</div>
+              </div>
+            </a>
+            <a class="info-pill" role="listitem" href="about.html#experience">
+              <span class="icon">⏳</span>
+              <div>
+                <div class="value">1</div>
+                <div class="label">Rok doświadczenia</div>
+              </div>
+            </a>
+            <div class="info-pill" role="listitem">
+              <span class="icon">🔥</span>
+              <div>
+                <div class="value">100%</div>
+                <div class="label">Zaangażowanie</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
     </div>
 

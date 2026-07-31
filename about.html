@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-theme')}catch(e){}</script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="description" content="Oskar Zięta – O mnie. Doświadczenie, edukacja i certyfikaty.">
-    <title>O mnie — Oskar Zięta</title>
+    <title>O mnie — Oskar Zięta / zieta.dev</title>
     <link rel="icon" type="image/x-icon" href="/twoja-sciezka/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link rel="stylesheet" href="assets/styles.css">
@@ -12,7 +14,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a class="nav-logo" href="index.html">Oskar Zięta</a>
+            <a class="nav-logo" href="index.html">Oskar Zięta / zieta.dev</a>
             <div class="nav-menu">
                 <a class="nav-btn" href="index.html">Główna</a>
                 <a class="nav-btn active" href="about.html">O mnie</a>
@@ -27,7 +29,7 @@
         <h1>O mnie</h1>
         <p>Jestem ambitnym specjalistą łączącym wiedzę z zakresu infrastruktury IT, monitoringu systemów oraz zaawansowanej analizy danych.</p>
 
-        <h2>Doświadczenie Zawodowe</h2>
+        <h2 id="experience">Doświadczenie Zawodowe</h2>
         <div class="timeline-item">
             <strong>Specjalista ds. Monitoringu Systemów IT — SGB Bank</strong>
             <p style="margin: 4px 0; color: var(--text-muted); font-size: 0.85rem;">04.2026 - Obecnie</p>
@@ -47,7 +49,7 @@
             <p>Studia licencjackie ze specjalizacją w analizie danych, procesach biznesowych oraz budowie aplikacji i struktur bazodanowych.</p>
         </div>
 
-        <h2>Certyfikaty i Kursy</h2>
+        <h2 id="certyfikaty">Certyfikaty i Kursy</h2>
         <div class="cert-grid">
             <!-- Certificates copied from original -->
             <div class="cert-card">
@@ -99,7 +101,7 @@
         <!-- Sekcja: W czasie wolnym (flip-karty) -->
         <section class="hobbies-section" style="margin-top: 30px;">
             <h2>W czasie wolnym</h2>
-            <p class="hobbies-subtitle">Tylko tytuły na kafelkach — najedź, aby zobaczyć opis.</p>
+            
 
             <div class="hobbies-grid">
                 <div class="flip-card glow" tabindex="0">
