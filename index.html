@@ -8,6 +8,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/twoja-sciezka/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         :root {
@@ -67,6 +68,31 @@
             align-items: center;
             justify-content: space-between;
         }
+        /* POPRAWKI DLA SMARTFONÓW (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Dopasowanie marginesów i paddingu */
+  body {
+    padding: 0 15px; /* Zapobiega przyklejaniu się treści do krawędzi ekranu */
+  }
+
+  /* Zmniejszenie prędkości lub dopasowanie karuzeli na telefonie */
+  .tech-track {
+    animation-duration: 18s; /* Szybsze/płynniejsze przesuwanie na mniejszym ekranie */
+  }
+
+  /* Wyśrodkowanie przycisków w sekcji Hero */
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn-cv {
+    justify-content: center;
+    width: 100%; /* Wygodny, duży przycisk pod kciuk na telefonie */
+  }
+}
 
         .nav-container {
             max-width: 900px;
