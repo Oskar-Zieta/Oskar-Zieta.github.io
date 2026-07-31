@@ -430,6 +430,164 @@
             border-radius: 50%;
             background: var(--accent-green);
         }
+        
+/* ============================================================
+   1. ATRAKCYJNY PRZYCISK "POBIERZ CV"
+   ============================================================ */
+.btn-cv {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  overflow: hidden;
+}
+
+.btn-cv:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+/* Subtelny poświatowy pulsujący pierścień wokół przycisku */
+.btn-cv::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: pulse-cv 2s infinite;
+}
+
+@keyframes pulse-cv {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+
+/* ============================================================
+   2. INTERAKTYWNE KARTY 3D (GŁÓWNE OBSZARY)
+   ============================================================ */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  perspective: 1000px;
+}
+
+.feature-card {
+  background: #18191c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(16, 185, 129, 0.15);
+}
+
+.feature-card .card-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .card-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.feature-card h3 {
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.feature-card p {
+  color: #9ca3af;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+
+/* ============================================================
+   3. NIESKOŃCZONA KARUZELA TECHNOLOGII (INFINITE SCROLL)
+   ============================================================ */
+.tech-slider-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 15px 0;
+  background: #18191c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  /* Maskowanie brzegów na wypłaszczenie */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.tech-track {
+  display: flex;
+  width: max-content;
+  gap: 15px;
+  animation: scroll-left 25s linear infinite;
+}
+
+.tech-slider-wrapper:hover .tech-track {
+  animation-play-state: paused; /* Zatrzymanie ruchu po najechaniu myszką */
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
         footer {
             text-align: center;
@@ -445,6 +603,7 @@
             .nav-menu { gap: 2px; }
             .nav-btn { padding: 6px 10px; font-size: 0.8rem; }
         }
+        
     </style>
 </head>
 <body>
@@ -475,7 +634,14 @@
                 <p>22 letni student Informatyki i Ekonometrii. Mieszkam w Poznaniu i aktualnie pracuję jako specjalista ds. Monitoringu Systemów IT.</p>
                 
                 <div class="social-links">
-                    <a href="oskarzieta_cv.pdf" download>📄 Pobierz CV</a>
+                    <a href="oskarzieta_cv.pdf" class="btn-cv" download>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="7 10 12 15 17 10"></polyline>
+    <line x1="12" y1="15" x2="12" y2="3"></line>
+  </svg>
+  <span>Pobierz CV</span>
+</a>
                     <a href="https://www.linkedin.com/in/oskar-zięta/" target="_blank">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.3.7-1.93 1.63-1.93 1.1 0 1.48.78 1.48 2v4.86h2.79M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.64a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z"/></svg>
                         LinkedIn
@@ -495,77 +661,57 @@
             </div>
         </div>
 
-        <h2>Główne obszary</h2>
-        <div class="bento-grid">
-            <div class="card">
-                <h3>💻 IT & Analiza Danych</h3>
-                <p>Praca z bazami danych, automatyzacja w Pythonie oraz wizualizacja danych.</p>
-            </div>
-            <div class="card">
-                <h3>🖥️Monitoring</h3>
-                <p>Utrzymanie infrastruktury oraz praca z narzędziami Zabbix i Grafana.</p>
-            </div>
-            <div class="card">
-                <h3>📊 Serwery</h3>
-                <p>Utrzymanie i zarządzanie serwerami, w tym konfiguracja, monitorowanie i optymalizacja wydajności.</p>
-            </div>
-        </div>
+        <section class="main-areas" style="margin-top: 40px;">
+  <h2>Główne obszary</h2>
+  <div class="cards-container">
+    
+    <div class="feature-card">
+      <span class="card-icon">💻</span>
+      <h3>IT & Analiza Danych</h3>
+      <p>Praca z bazami danych, automatyzacja w Pythonie oraz wizualizacja danych.</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="card-icon">🖥️</span>
+      <h3>Monitoring</h3>
+      <p>Utrzymanie infrastruktury oraz praca z narzędziami Zabbix i Grafana.</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="card-icon">📊</span>
+      <h3>Serwery</h3>
+      <p>Utrzymanie i zarządzanie serwerami, w tym konfiguracja, monitorowanie i optymalizacja wydajności.</p>
+    </div>
+
+  </div>
+</section>
 
         <!-- Narzędzia z Wbudowanymi Wektorami SVG -->
         <!-- Sekcja Narzędzia i Technologie -->
-<section class="tools-section">
-    <h2>Narzędzia i Technologie</h2>
-    <div class="tech-stack">
+<section class="tech-stack" style="margin-top: 40px;">
+  <h2>Narzędzia i Technologie</h2>
+  
+  <div class="tech-slider-wrapper">
+    <div class="tech-track">
+      <!-- Pierwsza pętla tagów -->
+      <span class="tech-badge">🐍 Python</span>
+      <span class="tech-badge">💻 VS Code</span>
+      <span class="tech-badge">📊 Excel</span>
+      <span class="tech-badge">🔷 Jira / Confluence</span>
+      <span class="tech-badge">🔴 Zabbix</span>
+      <span class="tech-badge">🟧 HTML / CSS</span>
+      <span class="tech-badge">📈 Grafana</span>
 
-        <!-- Python -->
-        <div class="tech-pill">
-            <img src="https://cdn.simpleicons.org/python/3776AB" width="18" height="18" alt="Python">
-            <span>Python</span>
-        </div>
-
-        <!-- VS Code -->
-        <div class="tech-pill">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="#007ACC">
-        <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.12a.999.999 0 0 0-1.276.061L.327 7.276a1 1 0 0 0 .021 1.442l3.41 3.28-3.41 3.28a1 1 0 0 0-.02 1.442l1.322 1.208a1 1 0 0 0 1.276.06l4.12-3.11 9.46 8.63a1.49 1.49 0 0 0 1.705.29l4.94-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.15 13.73l-6.17-4.317 6.17-4.318v8.635z"/>
-    </svg>
-    <span>VS Code</span>
-</div>
-
-        <!-- Excel -->
-        <div class="tech-pill">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="#107C41">
-        <path d="M23 1.5q.41 0 .7.3t.3.7v19q0 .41-.3.7t-.7.3H7q-.41 0-.7-.3t-.3-.7V18H1q-.41 0-.7-.3t-.3-.7V7q0-.41.3-.7t.7-.3h5V2.5q0-.41.3-.7t.7-.3h16zM6 8.5H2v7h4v-7zm16-5.5H8v18h14V3zM10.5 6h2.8l2.2 4.1L17.7 6h2.8l-3.7 6.1 3.9 6.4h-2.9l-2.4-4.5-2.5 4.5h-2.8l4.1-6.4-3.7-6.1z"/>
-    </svg>
-    <span>Excel</span>
-</div>
-
-        <!-- Jira / Confluence -->
-        <div class="tech-pill">
-            <img src="https://cdn.simpleicons.org/jira/0052CC" width="18" height="18" alt="Jira">
-            <span>Jira / Confluence</span>
-        </div>
-
-        <!-- Zabbix -->
-        <div class="tech-pill">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="#D40000">
-        <path d="M2.4 2.4h19.2v3.6H9.3l12.3 12v3.6H2.4v-3.6h12.3l-12.3-12V2.4z"/>
-    </svg>
-    <span>Zabbix</span>
-</div>
-
-        <!-- HTML / CSS -->
-        <div class="tech-pill">
-            <img src="https://cdn.simpleicons.org/html5/E34F26" width="18" height="18" alt="HTML5">
-            <span>HTML / CSS</span>
-        </div>
-
-        <!-- Grafana -->
-        <div class="tech-pill">
-            <img src="https://cdn.simpleicons.org/grafana/F46800" width="18" height="18" alt="Grafana">
-            <span>Grafana</span>
-        </div>
-
+      <!-- Powtórzenie tej samej listy tagów (wymagane do płynnej bezszwowej animacji CSS) -->
+      <span class="tech-badge">🐍 Python</span>
+      <span class="tech-badge">💻 VS Code</span>
+      <span class="tech-badge">📊 Excel</span>
+      <span class="tech-badge">🔷 Jira / Confluence</span>
+      <span class="tech-badge">🔴 Zabbix</span>
+      <span class="tech-badge">🟧 HTML / CSS</span>
+      <span class="tech-badge">📈 Grafana</span>
     </div>
+  </div>
 </section>
     </div>
 
