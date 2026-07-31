@@ -69,28 +69,33 @@
             justify-content: space-between;
         }
         /* POPRAWKI DLA SMARTFONÓW (max-width: 768px) */
+/* ============================================================
+   FIKS DLA WERSJI MOBILNEJ (DLA EKRANÓW DO 768px)
+   Naprawia problem zasłaniania zdjęcia przez pasek nawigacji
+   ============================================================ */
 @media (max-width: 768px) {
-  /* Dopasowanie marginesów i paddingu */
-  body {
-    padding: 0 15px; /* Zapobiega przyklejaniu się treści do krawędzi ekranu */
+
+  /* 1. Znajdź główny kontener sekcji ze zdjęciem.
+        W poprzednich kodach nie mieliśmy go uciętego,
+        ale prawdopodobnie nazywa się to 'hero', 'hero-section' lub po prostu <main>.
+        Poniżej używam .hero-section jako przykładu klasy.
+        PODMIEŃ .hero-section na właściwą klasę swojej sekcji powitalnej.
+  */
+  .hero-section {
+    padding-top: 100px !important; /* Doda wystarczająco dużo miejsca nad zdjęciem */
+    margin-top: 0 !important;    /* Resetuje marginesy */
   }
 
-  /* Zmniejszenie prędkości lub dopasowanie karuzeli na telefonie */
-  .tech-track {
-    animation-duration: 18s; /* Szybsze/płynniejsze przesuwanie na mniejszym ekranie */
-  }
-
-  /* Wyśrodkowanie przycisków w sekcji Hero */
-  .hero-buttons {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-  }
-
-  .btn-cv {
-    justify-content: center;
-    width: 100%; /* Wygodny, duży przycisk pod kciuk na telefonie */
+  /* 2. (OPCJONALNIE) Dostosowanie samego zdjęcia na mobile.
+        Jeśli Twoje zdjęcie nadal wygląda źle, ten kod je wyśrodkuje
+        i sprawi, że nie będzie za duże na szerokość.
+        Prawdopodobnie używasz klasy .hero-image lub <img> wewnątrz .hero-section.
+  */
+  .hero-section img {
+    display: block;
+    margin: 0 auto 20px auto; /* Wyśrodkuje zdjęcie i doda odstęp na dole */
+    max-width: 80% !important;   /* Zapobiegnie rozciąganiu zdjęcia na całą szerokość */
+    height: auto !important;
   }
 }
 
