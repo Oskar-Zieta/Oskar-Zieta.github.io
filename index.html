@@ -5,59 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oskar Zięta | zieta.dev</title>
 
-    <!-- Ikonka w zakładce przeglądarki (Favicon) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/twoja-sciezka/favicon.ico">
 
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0b0b0d 0%, #1d1f24 45%, #2b2e34 100%);
+            --bg-color: #0b0b0d;
+            --text-color: #f2f2f2;
+            --text-muted: #cfd6e3;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(15, 17, 21, 0.75);
+            --input-bg: rgba(255, 255, 255, 0.08);
+            --accent-green: #22c55e;
+            --accent-green-alpha: rgba(34, 197, 94, 0.4);
+        }
+
+        /* Motyw Jasny */
+        body.light-theme {
+            --bg-gradient: linear-gradient(135deg, #f4f5f7 0%, #e2e8f0 50%, #cbd5e1 100%);
+            --bg-color: #f4f5f7;
+            --text-color: #0f172a;
+            --text-muted: #475569;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --input-bg: rgba(255, 255, 255, 0.9);
+        }
+
         * { box-sizing: border-box; }
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px 60px;
+            padding: 90px 20px 60px;
             line-height: 1.6;
-            color: #f2f2f2;
-            background-color: #0b0b0d;
-            background: linear-gradient(135deg, #0b0b0d 0%, #1d1f24 45%, #2b2e34 100%);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            background: var(--bg-gradient);
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            inset: -20%;
-            background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.16), transparent 28%),
-                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.09), transparent 24%);
-            animation: lightSweep 10s ease-in-out infinite alternate;
-            pointer-events: none;
-            filter: blur(40px);
-            opacity: 0.75;
-            z-index: 0;
-        }
-        @keyframes lightSweep {
-            0% { transform: translate(-8%, -8%) scale(1); }
-            100% { transform: translate(8%, 8%) scale(1.08); }
-        }
-        body > * {
-            position: relative;
-            z-index: 1;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Hero Section */
+        /* Nawigacja Top Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .nav-logo:hover {
+            background: var(--card-bg);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-color);
+            background: var(--card-bg);
+        }
+
+        .nav-btn.active {
+            color: var(--text-color);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            font-weight: 600;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Zarządzanie Kartami / Tabami */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero & Status */
         .hero {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 32px;
             margin-bottom: 24px;
-            border-bottom: 2px solid rgba(255,255,255,0.12);
+            border-bottom: 1px solid var(--card-border);
             padding-bottom: 24px;
         }
         .hero-text { flex: 1; }
 
-        /* Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -74,30 +184,27 @@
         .status-dot {
             width: 8px;
             height: 8px;
-            background-color: #22c55e;
+            background-color: var(--accent-green);
             border-radius: 50%;
-            box-shadow: 0 0 8px #22c55e;
+            box-shadow: 0 0 8px var(--accent-green);
             animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
         h1 {
-            color: #f7f7f7;
-            font-size: 2.4rem;
-            letter-spacing: 0.02em;
+            color: var(--text-color);
+            font-size: 2.2rem;
             margin: 0 0 12px 0;
-            line-height: 1.2;
         }
 
-        /* Zdjęcie Profilowe */
+        h2 { 
+            color: var(--text-color); 
+            margin-top: 32px; 
+            font-size: 1.4rem;
+        }
+
         .profile-avatar {
-            position: relative;
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             flex-shrink: 0;
         }
         .profile-avatar img {
@@ -105,375 +212,326 @@
             height: 100%;
             object-fit: cover;
             border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            position: relative;
-            z-index: 1;
-        }
-        .profile-avatar::after {
-            content: "";
-            position: absolute;
-            inset: -4px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.05));
-            z-index: 0;
-            filter: blur(8px);
+            border: 2px solid var(--card-border);
         }
 
-        h2 { 
-            color: #dfe3ea; 
-            margin-top: 36px; 
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Kafelki Bento (Zainteresowania) */
-        .bento-grid {
+        /* Kafelki / Grid */
+        .bento-grid, .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 16px;
             margin-top: 16px;
-            margin-bottom: 24px;
         }
-        .bento-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 20px;
             backdrop-filter: blur(8px);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
-        .bento-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(34, 197, 94, 0.4);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.12);
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-green-alpha);
         }
-        .bento-card h3 {
-            margin: 0 0 8px 0;
-            font-size: 1.1rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        /* Sekcja Narzędzia i Technologie */
+
+        /* Sekcja Narzędzia */
         .tools-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 24px;
-            backdrop-filter: blur(8px);
-            margin-top: 32px;
+            margin-top: 24px;
         }
-        .tools-section h2 {
-            margin: 0 0 16px 0;
-        }
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-        }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; }
         .tech-pill {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             padding: 8px 16px;
             border-radius: 999px;
             font-size: 0.9rem;
             font-weight: 500;
-            color: #ffffff;
-            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-        }
-        .tech-pill:hover {
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.13);
-            border-color: rgba(34, 197, 94, 0.4);
         }
 
-        /* Doświadczenie i projekty */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 16px 20px;
-            backdrop-filter: blur(8px);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(34, 197, 94, 0.4);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.12);
-        }
-        .project-card strong {
-            display: block;
-            color: #ffffff;
-            font-size: 1.05rem;
-            margin-bottom: 6px;
-        }
-
-        /* Formularz kontaktowy */
-        .contact-form {
-            background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
-            padding: 24px;
-            border-radius: 16px;
-            margin-top: 40px;
-            border: 1px solid rgba(255,255,255,0.12);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-            backdrop-filter: blur(10px);
-            transition: border-color 0.3s ease;
-        }
-        .contact-form:focus-within { border-color: rgba(255, 255, 255, 0.25); }
-        .contact-form h2 { margin-top: 0; }
-        .contact-form label { display: block; margin-bottom: 6px; font-weight: 600; color: #e8ecf2; }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 14px;
-            margin-bottom: 14px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            font: inherit;
-            outline: none;
-            transition: border-color 0.2s ease, background 0.2s ease;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            border-color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.12);
-        }
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder { color: #cfd6e3; }
-        .contact-form button {
-            padding: 10px 20px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 999px;
-            background: linear-gradient(135deg, #3a3d45 0%, #1f2329 100%);
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-        }
-        .contact-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.28);
-            background: linear-gradient(135deg, #4a4e58 0%, #2a2f37 100%);
-        }
-
-        /* Linki społecznościowe */
-        .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0 0; }
+        /* Social Links */
+        .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
         .social-links a {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            padding: 8px 14px;
-            background: linear-gradient(135deg, #2f3a33 0%, #13241a 45%, #445a46 100%);
-            color: #f3f7f2;
+            padding: 8px 16px;
+            background: var(--card-bg);
+            color: var(--text-color);
             text-decoration: none;
             border-radius: 999px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            border: 1px solid rgba(186, 214, 180, 0.25);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            border: 1px solid var(--card-border);
+            transition: transform 0.2s ease;
         }
-        .social-links a.cv-button {
-            background: linear-gradient(135deg, #3b4252 0%, #2e3440 100%);
-            border-color: rgba(255,255,255,0.2);
-        }
-        .social-links a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.35);
-        }
-        .social-icon {
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
-        }
-        .icon-linkedin { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6.94 8.5A1.56 1.56 0 1 0 6.94 5.38a1.56 1.56 0 0 0 0 3.12ZM5.5 9.5h2.88V18H5.5zM10.5 9.5h2.76v1.16h.04c.38-.72 1.31-1.48 2.7-1.48 2.88 0 3.41 1.89 3.41 4.35V18h-2.88v-7.6c0-1.81-.03-4.14-2.52-4.14-2.52 0-2.91 1.97-2.91 3.99V18H10.5z'/%3E%3C/svg%3E"); }
-        .icon-github { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 .5a12 12 0 0 0-3.8 23.1c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.7-.8 1.7-.8.7-1.2 1.8-1.3 2.2-.9.1-.7-.4-.7-.4l.1-1.4c.1-.8.4-1.3.8-1.6-2.7-.3-5.6-1.3-5.6-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.6 11.6 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.8 1.2 1.9 1.2 3.2 0 4.6-2.9 5.6-5.6 5.9.4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z'/%3E%3C/svg%3E"); }
-        .icon-instagram { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5.2-3.2a1.2 1.2 0 1 1-1.2 1.2 1.2 1.2 0 0 1 1.2-1.2Z'/%3E%3C/svg%3E"); }
+        .social-links a:hover { transform: translateY(-2px); }
 
-        /* Stopka */
+        /* Formularz Kontaktowy */
+        .contact-form {
+            background: var(--card-bg);
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            margin-top: 16px;
+        }
+        .contact-form label { display: block; margin-bottom: 6px; font-weight: 600; }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            outline: none;
+        }
+        .contact-form button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 999px;
+            background: var(--text-color);
+            color: var(--bg-color);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Timeline / Doświadczenie */
+        .timeline-item {
+            border-left: 2px solid var(--card-border);
+            padding-left: 16px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-green);
+        }
+
         footer {
             text-align: center;
             margin-top: 60px;
             padding: 20px 0;
-            color: rgba(255, 255, 255, 0.4);
+            color: var(--text-muted);
             font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid var(--card-border);
         }
 
         @media (max-width: 650px) {
-            body { padding: 24px 16px 40px; }
-            .hero { flex-direction: column-reverse; text-align: center; gap: 20px; }
-            .status-badge { margin: 0 auto 12px; }
-            .social-links { justify-content: center; }
-            .projects-grid, .bento-grid { grid-template-columns: 1fr; }
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .nav-menu { gap: 2px; }
+            .nav-btn { padding: 6px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sekcja Główna (Hero) -->
-    <div class="hero">
-        <div class="hero-text">
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                Dostępny do rekrutacji / projektów
+    <!-- Nawigacja Górna -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <button class="nav-logo" onclick="switchTab('home')">Oskar Zięta</button>
+            <div class="nav-menu">
+                <button class="nav-btn active" onclick="switchTab('home')">Główna</button>
+                <button class="nav-btn" onclick="switchTab('about')">O mnie</button>
+                <button class="nav-btn" onclick="switchTab('projects')">Projekty</button>
+                <button class="nav-btn" onclick="switchTab('contact')">Kontakt</button>
             </div>
-            <h1>Oskar Zięta</h1>
-            <p>Mam 22 lata, jestem studentem Informatyki i Ekonometrii oraz pracuję w SGB Banku w dziale IT na stanowisku Specjalisty ds. Monitoringu Systemów Informatycznych. Na co dzień dbam o utrzymanie ciągłości działania systemów informatycznych i aktywnie rozwijam narzędzia monitorujące.</p>
-            
-            <div class="social-links">
-                <a href="oskarzieta_cv.pdf" download class="cv-button">📄 Pobierz CV</a>
-                <a href="https://www.linkedin.com/in/oskar-zięta/" target="_blank" rel="noopener noreferrer"><span class="social-icon icon-linkedin"></span>LinkedIn</a>
-                <a href="https://github.com/Oskar-Zieta" target="_blank" rel="noopener noreferrer"><span class="social-icon icon-github"></span>GitHub</a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><span class="social-icon icon-instagram"></span>Instagram</a>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+        </div>
+    </nav>
+
+    <!-- 1. KARTA: STRONA GŁÓWNA -->
+    <div id="home" class="tab-content active">
+        <div class="hero">
+            <div class="hero-text">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Dostępny do rekrutacji / projektów
+                </div>
+                <h1>Oskar Zięta</h1>
+                <p>Specjalista ds. Monitoringu Systemów IT w SGB Banku oraz student Informatyki i Ekonometrii. Zajmuję się utrzymaniem ciągłości działania infrastruktury IT, analizą danych oraz automatyzacją procesów.</p>
+                
+                <div class="social-links">
+                    <a href="oskarzieta_cv.pdf" download>📄 Pobierz CV</a>
+                    <a href="https://www.linkedin.com/in/oskar-zięta/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/Oskar-Zieta" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="profile-avatar">
+                <img src="zdjecie_1.jpg" alt="Oskar Zięta">
             </div>
         </div>
 
-        <div class="profile-avatar">
-            <img src="zdjecie_1.jpg" alt="Oskar Zięta">
+        <h2>Główne obszary</h2>
+        <div class="bento-grid">
+            <div class="card">
+                <h3>💻 IT & Analiza Danych</h3>
+                <p>Praca z bazami danych (SQL), automatyzacja w Pythonie oraz wizualizacja danych.</p>
+            </div>
+            <div class="card">
+                <h3>🖥️ Serwery & Monitoring</h3>
+                <p>Utrzymanie infrastruktury oraz praca z narzędziami Zabbix i Grafana.</p>
+            </div>
+        </div>
+
+        <!-- Narzędzia -->
+        <section class="tools-section">
+            <h2>Narzędzia i Technologie</h2>
+            <div class="tech-stack">
+                <div class="tech-pill">
+                    <img src="https://cdn.simpleicons.org/python/3776AB" width="18" height="18" alt="Python">
+                    <span>Python</span>
+                </div>
+                <div class="tech-pill">
+                    <img src="https://cdn.simpleicons.org/vscode/007ACC" width="18" height="18" alt="VS Code">
+                    <span>VS Code</span>
+                </div>
+                <div class="tech-pill">
+                    <img src="https://cdn.simpleicons.org/jira/0052CC" width="18" height="18" alt="Jira">
+                    <span>Jira / Confluence</span>
+                </div>
+                <div class="tech-pill">
+                    <img src="https://cdn.simpleicons.org/zabbix/D40000" width="18" height="18" alt="Zabbix">
+                    <span>Zabbix</span>
+                </div>
+                <div class="tech-pill">
+                    <img src="https://cdn.simpleicons.org/grafana/F46800" width="18" height="18" alt="Grafana">
+                    <span>Grafana</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 2. KARTA: O MNIE (SZCZEGÓŁOWA) -->
+    <div id="about" class="tab-content">
+        <h1>O mnie</h1>
+        <p>Jestem ambitnym specjalistą łączącym wiedzę z zakresu infrastruktury IT, monitoringu systemów oraz zaawansowanej analizy danych.</p>
+
+        <h2>Doświadczenie Zawodowe</h2>
+        <div class="timeline-item">
+            <strong>Specjalista ds. Monitoringu Systemów IT — SGB Bank</strong>
+            <p style="margin: 4px 0; color: var(--text-muted); font-size: 0.85rem;">Obecnie</p>
+            <p>Odpowiedzialność za zapewnienie ciągłości działania kluczowych systemów bankowych, konfigurację i obsługę narzędzi monitorujących (Zabbix, Grafana) oraz reakcję na incydenty IT.</p>
+        </div>
+
+        <h2>Edukacja</h2>
+        <div class="timeline-item">
+            <strong>Uniwersytet Ekonomiczny w Poznaniu</strong>
+            <p style="margin: 4px 0; color: var(--text-muted); font-size: 0.85rem;">Informatyka i Ekonometria</p>
+            <p>Studia licencjackie ze specjalizacją w analizie danych, procesach biznesowych oraz budowie aplikacji i struktur bazodanowych.</p>
+        </div>
+
+        <h2>Certyfikaty i Kursy</h2>
+        <div class="bento-grid">
+            <div class="card">
+                <strong>Zabbix Certified User / Specialist</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Utrzymanie i monitoring infrastruktury sieciowej.</p>
+            </div>
+            <div class="card">
+                <strong>SQL & Data Analysis</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Zaawansowane zapytania i analiza baz danych.</p>
+            </div>
         </div>
     </div>
 
-    <!-- Sekcja Zainteresowania w formie kafelków Bento Grid -->
-    <h2>Zainteresowania i rozwój</h2>
-    <div class="bento-grid">
-        <div class="bento-card">
-            <h3>💻 IT & Analiza Danych</h3>
-            <p>Praca z danymi, automatyzacja i poznawanie nowych narzędzi. Interesują mnie systemy bazodanowe oraz analiza procesów.</p>
-        </div>
-        <div class="bento-card">
-            <h3>🖥️ Serwery & Monitoring</h3>
-            <p>Rozwój w obszarze architektury sieciowej, utrzymania ciągłości działania systemów oraz narzędzi monitorujących IT.</p>
-        </div>
-        <div class="bento-card">
-            <h3>⚽ Sport & Rozwój</h3>
-            <p>Pasjonat piłki nożnej i sportów zespołowych. Stawiam na ciągły rozwój osobisty i pracę w dynamicznym środowisku.</p>
-        </div>
-    </div>
+    <!-- 3. KARTA: PROJEKTY -->
+    <div id="projects" class="tab-content">
+        <h1>Wybrane Projekty</h1>
+        <p>Oto wybrane inicjatywy oraz projekty, nad którymi pracowałem:</p>
 
-    <!-- Sekcja Narzędzia i Technologie z Poprawnymi Ikonami SVG -->
-    <section class="tools-section">
-        <h2>Narzędzia i Technologie</h2>
-        
-        <div class="tech-stack">
-
-            <!-- Python -->
-            <div class="tech-pill">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M11.892 0c-6.25 0-5.86 2.712-5.86 2.712l.006 2.812h5.922v.842H3.593C1.3 6.366 0 7.734 0 11.834c0 4.102 2.001 5.488 4.293 5.488h2.563V14.63c0-2.58 2.2-4.838 4.887-4.838h5.836c2.195 0 3.792-1.543 3.792-3.791V3.792C21.371 1.543 19.508 0 11.892 0zM8.887 1.837a1.084 1.084 0 110 2.169 1.084 1.084 0 010-2.169z" fill="#3776AB"/>
-                    <path d="M12.108 24c6.25 0 5.86-2.712 5.86-2.712l-.006-2.812h-5.922v-.842h8.361c2.293 0 3.593-1.368 3.593-5.468 0-4.102-2.001-5.488-4.293-5.488h-2.563v2.692c0 2.58-2.2 4.838-4.887 4.838H6.415c-2.195 0-3.792 1.543-3.792 3.791v2.215C2.623 22.457 4.486 24 12.108 24zm3.005-1.837a1.084 1.084 0 110-2.169 1.084 1.084 0 010 2.169z" fill="#FFD43B"/>
-                </svg>
-                <span>Python</span>
+        <div class="projects-grid">
+            <div class="card">
+                <h3>SGB Bank — Systemy Monitoringu</h3>
+                <p>Rozwój dedykowanych pulpitów nawigacyjnych i reguł alerteujących dla infrastruktury bankowej w oparciu o Grafanę i Zabbix.</p>
             </div>
-
-            <!-- VS Code -->
-            <div class="tech-pill">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#007ACC">
-                    <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.12a.999.999 0 0 0-1.276.061L.327 7.276a1 1 0 0 0 .021 1.442l3.41 3.28-3.41 3.28a1 1 0 0 0-.02 1.442l1.322 1.208a1 1 0 0 0 1.276.06l4.12-3.11 9.46 8.63a1.49 1.49 0 0 0 1.705.29l4.94-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.15 13.73l-6.17-4.317 6.17-4.318v8.635z"/>
-                </svg>
-                <span>VS Code</span>
+            <div class="card">
+                <h3>Analiza Szarej Strefy w Polsce</h3>
+                <p>Projekt badawczo-analityczny oparty na danych ankietowych oraz modelowaniu ilościowym.</p>
             </div>
-
-            <!-- Excel -->
-            <div class="tech-pill">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#107C41">
-                    <path d="M23 1.5q.41 0 .7.3t.3.7v19q0 .41-.3.7t-.7.3H7q-.41 0-.7-.3t-.3-.7V18H1q-.41 0-.7-.3t-.3-.7V7q0-.41.3-.7t.7-.3h5V2.5q0-.41.3-.7t.7-.3h16zM6 8.5H2v7h4v-7zm16-5.5H8v18h14V3zM10.5 6h2.8l2.2 4.1L17.7 6h2.8l-3.7 6.1 3.9 6.4h-2.9l-2.4-4.5-2.5 4.5h-2.8l4.1-6.4-3.7-6.1z"/>
-                </svg>
-                <span>Excel</span>
+            <div class="card">
+                <h3>Ekonomiczny Uniwersytet Dziecięcy</h3>
+                <p>Wolontariat akademicki — organizacja zajęć i edukacja z zakresu podstaw ekonomii i nowych technologii.</p>
             </div>
-
-            <!-- Jira / Confluence -->
-            <div class="tech-pill">
-                <img src="https://cdn.simpleicons.org/jira/0052CC" width="18" height="18" alt="Jira">
-                <span>Jira / Confluence</span>
-            </div>
-
-            <!-- Zabbix (Oficjalna ikona Zabbix) -->
-            <div class="tech-pill">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#D40000">
-                    <path d="M2 2h20v4L8.5 18H22v4H2v-4l13.5-12H2V2z"/>
-                </svg>
-                <span>Zabbix</span>
-            </div>
-
-            <!-- HTML / CSS -->
-            <div class="tech-pill">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#E34F26">
-                    <path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.236-2.657H5.41l.69 8.1l9.126.001-.32 3.587-2.922.792-2.928-.795-.187-2.128H6.2l.35 4.382 5.412 1.5 5.421-1.5.735-8.267H8.531z"/>
-                </svg>
-                <span>HTML / CSS</span>
-            </div>
-
-            <!-- Grafana -->
-            <div class="tech-pill">
-                <img src="https://cdn.simpleicons.org/grafana/F46800" width="18" height="18" alt="Grafana">
-                <span>Grafana</span>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Doświadczenie i projekty -->
-    <h2>Doświadczenie i wybrane projekty</h2>
-    <div class="projects-grid">
-        <div class="project-card">
-            <strong>SGB Bank (Dział IT)</strong>
-            Utrzymanie ciągłości operacyjnej systemów informatycznych oraz rozwój procesów monitoringu IT.
-        </div>
-        <div class="project-card">
-            <strong>Projekty studenckie</strong>
-            Analiza szarej strefy w Polsce poparta danymi ankietowymi.
-        </div>
-        <div class="project-card">
-            <strong>Wolontariat</strong>
-            Współpraca z dziećmi i młodzieżą podczas zajęć w ramach Ekonomicznego Uniwersytetu Dziecięcego.
         </div>
     </div>
 
-    <!-- Formularz Kontaktowy -->
-    <div class="contact-form">
-        <h2>Kontakt</h2>
-        <form action="https://formspree.io/f/xykrayyq" method="POST">
-            <label for="email">Twój Email</label>
-            <input type="email" id="email" name="email" placeholder="twoj@email.com" required>
+    <!-- 4. KARTA: KONTAKT -->
+    <div id="contact" class="tab-content">
+        <h1>Skontaktuj się ze mną</h1>
+        <p>Masz pytanie lub propozycję współpracy? Wypełnij poniższy formularz!</p>
 
-            <label for="subject">Temat</label>
-            <input type="text" id="subject" name="_subject" placeholder="W czym mogę pomóc?" required>
+        <div class="contact-form">
+            <form action="https://formspree.io/f/xykrayyq" method="POST">
+                <label for="email">Twój Email</label>
+                <input type="email" id="email" name="email" placeholder="twoj@email.com" required>
 
-            <label for="message">Wiadomość</label>
-            <textarea id="message" name="message" rows="5" placeholder="Napisz wiadomość..." required></textarea>
+                <label for="subject">Temat</label>
+                <input type="text" id="subject" name="_subject" placeholder="W czym mogę pomóc?" required>
 
-            <button type="submit">Wyślij wiadomość</button>
-        </form>
+                <label for="message">Wiadomość</label>
+                <textarea id="message" name="message" rows="5" placeholder="Napisz wiadomość..." required></textarea>
+
+                <button type="submit">Wyślij wiadomość</button>
+            </form>
+        </div>
     </div>
 
     <!-- Stopka -->
-
     <footer>
         © 2026 Oskar Zięta. Wszystkie prawa zastrzeżone. Built with HTML & CSS.
     </footer>
 
+    <!-- Skrypty Przełączania Kart i Motywu -->
+    <script>
+        function switchTab(tabId) {
+            // Ukryj wszystkie karty
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Odznacz wszystkie przyciski
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Aktywuj wybraną kartę
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+
+            // Podświetl odpowiedni przycisk w menu
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Przewiń na górę strony po przełączeniu
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const themeBtn = document.getElementById('themeBtn');
+            if (document.body.classList.contains('light-theme')) {
+                themeBtn.textContent = '☀️';
+            } else {
+                themeBtn.textContent = '🌙';
+            }
+        }
+    </script>
 </body>
 </html>
