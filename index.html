@@ -222,6 +222,74 @@
             gap: 16px;
             margin-top: 16px;
         }
+        /* Kafelki Certyfikatów */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+.cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.cert-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-green-alpha);
+}
+.cert-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.cert-issuer-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    flex-shrink: 0;
+}
+.cert-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.3;
+}
+.cert-issuer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+.cert-thumb-link {
+    display: block;
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    position: relative;
+    margin-top: 8px;
+}
+.cert-thumb-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.cert-thumb-link:hover img {
+    transform: scale(1.05);
+}
 
         .card {
             background: var(--card-bg);
@@ -408,7 +476,7 @@
                 
                 <div class="social-links">
                     <a href="oskarzieta_cv.pdf" download>📄 Pobierz CV</a>
-                    <a href="https://www.linkedin.com/in/oskar-zieta/" target="_blank">
+                    <a href="https://www.linkedin.com/in/oskar-zięta/" target="_blank">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.3.7-1.93 1.63-1.93 1.1 0 1.48.78 1.48 2v4.86h2.79M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.64a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z"/></svg>
                         LinkedIn
                     </a>
@@ -515,16 +583,77 @@
         </div>
 
         <h2>Certyfikaty i Kursy</h2>
-        <div class="bento-grid">
-            <div class="card">
-                <strong>Zabbix Certified User / Specialist</strong>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Utrzymanie i monitoring infrastruktury sieciowej.</p>
-            </div>
-            <div class="card">
-                <strong>SQL & Data Analysis</strong>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Zaawansowane zapytania i analiza baz danych.</p>
+<div class="cert-grid">
+
+    <!-- Certyfikat 1: Zabbix -->
+    <div class="cert-card">
+        <div>
+            <div class="cert-header">
+                <img src="https://cdn.simpleicons.org/zabbix/D40000" class="cert-issuer-logo" alt="ADM">
+                <div>
+                    <h3 class="cert-title">Zabbix dla początkujących 2026</h3>
+                    <div class="cert-issuer">Grupa ADM • Wydano lip 2026</div>
+                </div>
             </div>
         </div>
+        <!-- Podmień zabbix_cert.jpg na ścieżkę do Twojego pliku -->
+        <a href="zabbixcert.jpg" target="_blank" class="cert-thumb-link" title="Kliknij, aby powiększyć">
+            <img src="zabbixcert.jpg" alt="Zabbix Certyfikat">
+        </a>
+    </div>
+
+    <!-- Certyfikat 2: Microsoft AI Produktywność -->
+    <div class="cert-card">
+        <div>
+            <div class="cert-header">
+                <img src="https://cdn.simpleicons.org/microsoft/00A4EF" class="cert-issuer-logo" alt="Microsoft">
+                <div>
+                    <h3 class="cert-title">Produktywność w erze AI: jak odzyskać 5h tygodniowo</h3>
+                    <div class="cert-issuer">Microsoft • Wydano lis 2025</div>
+                </div>
+            </div>
+        </div>
+        <!-- Podmień ai_prod_cert.jpg na ścieżkę do Twojego pliku -->
+        <a href="aimicrosoft.jpg" target="_blank" class="cert-thumb-link" title="Kliknij, aby powiększyć">
+            <img src="aimicrosoft.jpg" alt="Microsoft AI Certyfikat">
+        </a>
+    </div>
+
+    <!-- Certyfikat 3: Microsoft Excel -->
+    <div class="cert-card">
+        <div>
+            <div class="cert-header">
+                <img src="https://cdn.simpleicons.org/microsoftexcel/107C41" class="cert-issuer-logo" alt="iNauka">
+                <div>
+                    <h3 class="cert-title">Microsoft Excel: Tabele Przestawne i WYSZUKAJ.PIONOWO</h3>
+                    <div class="cert-issuer">iNauka.pl • Wydano kwi 2025</div>
+                </div>
+            </div>
+        </div>
+        <!-- Podmień excel_cert.jpg na ścieżkę do Twojego pliku -->
+        <a href="excelcert.jpg" target="_blank" class="cert-thumb-link" title="Kliknij, aby powiększyć">
+            <img src="excelcert.jpg" alt="Excel Certyfikat">
+        </a>
+    </div>
+
+    <!-- Certyfikat 4: Microsoft AI Partner -->
+    <div class="cert-card">
+        <div>
+            <div class="cert-header">
+                <img src="https://cdn.simpleicons.org/microsoft/00A4EF" class="cert-issuer-logo" alt="Microsoft">
+                <div>
+                    <h3 class="cert-title">AI jako twój partner w karierze</h3>
+                    <div class="cert-issuer">Microsoft • Wydano lis 2025</div>
+                </div>
+            </div>
+        </div>
+        <!-- Podmień ai_partner_cert.jpg na ścieżkę do Twojego pliku -->
+        <a href="aicert.jpg" target="_blank" class="cert-thumb-link" title="Kliknij, aby powiększyć">
+            <img src="aicert.jpg" alt="AI Partner Certyfikat">
+        </a>
+    </div>
+
+</div>
     </div>
 
     <!-- 3. KARTA: PROJEKTY -->
