@@ -27,6 +27,9 @@ function copyToClipboard(text, element) {
 
 // On load: set theme button symbol
 document.addEventListener('DOMContentLoaded', () => {
+  try {
+    console.log('assets/main.js: DOMContentLoaded');
+  } catch(e) {}
   // Apply persisted theme (default: dark)
   const stored = localStorage.getItem('theme');
   if (stored === 'light') document.documentElement.classList.add('light-theme');
@@ -39,17 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // Poznań clock - Europe/Warsaw
   function updatePoznanClock() {
     const el = document.getElementById('poznanClock');
-    if (!el) return;
+    if (!el) { console.warn('Poznan clock element not found'); return; }
+    // show placeholder immediately
+    try { el.textContent = 'Poznań: --:--:--'; } catch(e){}
     try {
       const now = new Date();
-      const timeString = now.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Europe/Warsaw' });
+      const opts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Europe/Warsaw' };
+      const timeString = new Intl.DateTimeFormat('pl-PL', opts).format(now);
       el.textContent = `Poznań: ${timeString}`;
+      try { console.log('Poznan clock updated:', timeString); } catch(e) {}
       el.setAttribute('data-active', 'true');
     } catch (e) {
-      el.textContent = 'Poznań: --:--:--';
+      // Fallback: basic local time if Intl with timezone unsupported
+      try {
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2,'0');
+        const mm = String(now.getMinutes()).padStart(2,'0');
+        const ss = String(now.getSeconds()).padStart(2,'0');
+        el.textContent = `Poznań: ${hh}:${mm}:${ss}`;
+        try { console.log('Poznan clock fallback updated:', `${hh}:${mm}:${ss}`); } catch(e) {}
+        el.setAttribute('data-active', 'true');
+      } catch (e2) {
+        el.textContent = 'Poznań: --:--:--';
+      }
     }
   }
   updatePoznanClock();
   setInterval(updatePoznanClock, 1000);
-});
 });
