@@ -268,9 +268,9 @@ footer { text-align: center; margin-top: 60px; padding: 20px 0; color: var(--tex
 
 /* Compact info bar (pills + clock) */
 .info-bar { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 12px; }
-.info-items { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
-.info-pill { display: inline-flex; align-items: center; gap: 10px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 8px 12px; border-radius: 999px; min-width: 110px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
-.info-pill { text-decoration: none; color: inherit; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
+.info-items { display: flex !important; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.info-pill, a.info-pill { display: inline-flex !important; align-items: center; gap: 10px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 8px 12px; border-radius: 999px; min-width: 110px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); text-decoration: none !important; color: inherit !important; }
+.info-pill { transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
 .info-pill:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(16,185,129,0.12), 0 0 36px rgba(34,197,94,0.06); border-color: rgba(16,185,129,0.45); }
 .info-pill:active { transform: translateY(-1px); }
 .info-pill .icon { font-size: 1.1rem; line-height: 1; }
@@ -288,3 +288,5 @@ footer { text-align: center; margin-top: 60px; padding: 20px 0; color: var(--tex
 }
 
 /* end of styles */
+
+/* (interactive background grid removed) */

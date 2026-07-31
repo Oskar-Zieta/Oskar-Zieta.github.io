@@ -52,3 +52,4 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePoznanClock();
   setInterval(updatePoznanClock, 1000);
 });
+});
