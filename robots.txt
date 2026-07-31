@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zieta.dev/sitemap.xml
