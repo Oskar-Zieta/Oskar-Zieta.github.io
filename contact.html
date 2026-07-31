@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kontakt — Oskar Zięta">
+    <title>Kontakt — Oskar Zięta</title>
+    <link rel="icon" type="image/x-icon" href="/twoja-sciezka/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html">Oskar Zięta</a>
+            <div class="nav-menu">
+                <a class="nav-btn" href="index.html">Główna</a>
+                <a class="nav-btn" href="about.html">O mnie</a>
+                <a class="nav-btn" href="projects.html">Projekty</a>
+                <a class="nav-btn active" href="contact.html">Kontakt</a>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Skontaktuj się ze mną</h1>
+        <p>Masz pytanie lub propozycję współpracy? Wypełnij formularz lub skopiuj dane poniżej!</p>
+
+        <div class="contact-form">
+            <form action="https://formspree.io/f/xykrayyq" method="POST">
+                <label for="email">Twój Email</label>
+                <input type="email" id="email" name="email" placeholder="twoj@email.com" required>
+
+                <label for="subject">Temat</label>
+                <input type="text" id="subject" name="_subject" placeholder="W czym mogę pomóc?" required>
+
+                <label for="message">Wiadomość</label>
+                <textarea id="message" name="message" rows="5" placeholder="Napisz wiadomość..." required></textarea>
+
+                <button type="submit">Wyślij wiadomość</button>
+            </form>
+        </div>
+
+        <h2>Szybki kontakt i nicki</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Kliknij w dowolne okienko, aby natychmiast skopiować wartość do schowka:</p>
+
+        <div class="quick-contact-grid">
+            <div class="copy-card" onclick="copyToClipboard('oskar.zieta@example.com', this)">
+                <div class="copy-card-info">
+                    <span>📧</span>
+                    <div>
+                        <span class="label">Email</span>
+                        <span class="val">oskarzieta.praca@gmail.com</span>
+                    </div>
+                </div>
+                <span>📋</span>
+            </div>
+
+            <div class="copy-card" onclick="copyToClipboard('https://github.com/Oskar-Zieta', this)">
+                <div class="copy-card-info">
+                    <span>💻</span>
+                    <div>
+                        <span class="label">GitHub</span>
+                        <span class="val">Oskar-Zieta</span>
+                    </div>
+                </div>
+                <span>📋</span>
+            </div>
+
+            <div class="copy-card" onclick="copyToClipboard('oskar_zieta#0000', this)">
+                <div class="copy-card-info">
+                    <span>💬</span>
+                    <div>
+                        <span class="label">email_2</span>
+                        <span class="val">oskar@zieta.dev</span>
+                    </div>
+                </div>
+                <span>📋</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 Oskar Zięta. Wszystkie prawa zastrzeżone. Built with HTML & CSS.
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wybrane projekty Oskara Zięty">
+    <title>Projekty — Oskar Zięta</title>
+    <link rel="icon" type="image/x-icon" href="/twoja-sciezka/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html">Oskar Zięta</a>
+            <div class="nav-menu">
+                <a class="nav-btn" href="index.html">Główna</a>
+                <a class="nav-btn" href="about.html">O mnie</a>
+                <a class="nav-btn active" href="projects.html">Projekty</a>
+                <a class="nav-btn" href="contact.html">Kontakt</a>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Wybrane Projekty</h1>
+        <p>Oto wybrane inicjatywy oraz projekty, nad którymi pracowałem:</p>
+
+        <div class="projects-list">
+            <article class="project-item">
+                <div class="project-thumb">💻</div>
+                <div class="project-content">
+                    <div class="project-meta"><span class="pill new">Nowość</span></div>
+                    <h3>zieta.dev — Personal Portfolio</h3>
+                    <p class="muted">Nowoczesna wizytówka internetowa zaprojektowana w czystym HTML/CSS/JS z obsługą motywów (Dark/Light) i płynną nawigacją.</p>
+                    <div class="project-tech"><span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">Vanilla JS</span></div>
+                    
+                </div>
+            </article>
+
+            <article class="project-item">
+                <div class="project-thumb">🛡️</div>
+                <div class="project-content">
+                    <h3>SGB Bank — Systemy Monitoringu</h3>
+                    <p class="muted">Rozwój pulpitów nawigacyjnych i reguł alertujących dla infrastruktury bankowej (Grafana, Zabbix).</p>
+                    <div class="project-tech"><span class="tech-pill">Grafana</span><span class="tech-pill">Zabbix</span><span class="tech-pill">Monitoring</span></div>
+                    
+                </div>
+            </article>
+
+            <article class="project-item">
+                <div class="project-thumb">📊</div>
+                <div class="project-content">
+                    <h3>Analiza Szarej Strefy</h3>
+                    <p class="muted">Analiza danych ankietowych, wizualizacje i raport z wynikami oraz wnioskami dotyczącymi szarej strefy w Polsce.</p>
+                    <div class="project-tech"><span class="tech-pill">Python</span><span class="tech-pill">Pandas</span><span class="tech-pill">Wizualizacje</span><span class="tech-pill">Ankieta</span></div>
+                    
+                </div>
+            </article>
+
+            <article class="project-item">
+                <div class="project-thumb">🎓</div>
+                <div class="project-content">
+                    <h3>Ekonomiczny Uniwersytet Dziecięcy</h3>
+                    <p class="muted">Wolontariat — prowadzenie zajęć i materiały edukacyjne z zakresu podstaw ekonomii i technologii.</p>
+                    <div class="project-tech"><span class="tech-pill">Edukacja</span><span class="tech-pill">Prezentacje</span><span class="tech-pill">Administracja</span><span class="tech-pill">Współpraca</span></div>
+                    
+                </div>
+            </article>
+        </div>
+
+    </main>
+
+    <footer>
+        © 2026 Oskar Zięta. Wszystkie prawa zastrzeżone. Built with HTML & CSS.
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>
